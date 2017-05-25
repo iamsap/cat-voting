@@ -55,7 +55,7 @@
       </md-card>
 
       <md-card *ngFor="let image of votedCats">
-        <md-card-title>Rate this cat</md-card-title>
+        <md-card-title>Rated</md-card-title>
         <md-card-subtitle>ID# {{image.id}}</md-card-subtitle>
         <img md-card-image src="{{image.url}}">
         <md-card-content>
@@ -74,7 +74,7 @@
       </md-card>
 
       <md-card *ngFor="let image of favoriteCats">
-        <md-card-title>Rate this cat</md-card-title>
+        <md-card-title>Favorited this cat</md-card-title>
         <md-card-subtitle>ID# {{image.id}}</md-card-subtitle>
         <img md-card-image src="{{image.url}}">
         <md-card-content>

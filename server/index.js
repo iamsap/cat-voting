@@ -60,7 +60,7 @@ app.get('/api/cats', (req, res) => {
 
   var options = {
     hostname: 'thecatapi.com',
-    path: `/api/images/get?format=xml&results_per_page=20&api_key=${process.env.APIKEY}`
+    path: `/api/images/get?format=xml&results_per_page=1&api_key=${process.env.APIKEY}`
   };
 
   http.get(options, (xmlRes) => {
@@ -70,7 +70,7 @@ app.get('/api/cats', (req, res) => {
     });
 
     xmlRes.on('end', () => {
-      var json = parser.toJson(buffer, {object: true});
+      var json = parse(buffer)
       res.json(json);
     });
   });
@@ -91,12 +91,23 @@ app.get('/api/cats/favorites', (req, res) => {
     });
 
     xmlRes.on('end', () => {
-      var json = parser.toJson(buffer, {object: true});
+      var json = parse(buffer);
       res.json(json);
     });
   });
 
 });
+
+function parse(buffer){
+  var obj = parser.toJson(buffer, {object: true});
+
+  // Hack to always return an array
+  if(!(obj.response.data.images.image instanceof Array)){
+    obj.response.data.images.image = [obj.response.data.images.image];
+  }
+
+  return obj;
+}
 
 app.get('/api/cats/votes', (req, res) => {
 
@@ -112,7 +123,7 @@ app.get('/api/cats/votes', (req, res) => {
     });
 
     xmlRes.on('end', () => {
-      var json = parser.toJson(buffer, {object: true});
+      var json = parse(buffer);
       res.json(json);
     });
   });
