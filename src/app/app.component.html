@@ -1,3 +1,89 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+
+  <md-toolbar color="primary">
+    <md-icon>network_check</md-icon>
+    <span> Cat Voting</span>
+  </md-toolbar>
+
+  <md-tab-group (selectedIndexChange)="refresh()">
+    <md-tab label="Voting">
+
+      <md-card class="loading" *ngIf="!cats">
+        <md-card-content>
+          <md-progress-spinner
+            mode="indeterminate"></md-progress-spinner>
+        </md-card-content>
+      </md-card>
+
+      <md-card *ngFor="let image of cats">
+        <md-card-title>Rate this cat</md-card-title>
+        <md-card-subtitle>ID# {{image.id}}</md-card-subtitle>
+        <img md-card-image src="{{image.url}}">
+        <md-card-actions>
+
+          <div class="flexbox">
+
+            <md-select placeholder="Rating" [(ngModel)]="image.score" name="food">
+              <md-option *ngFor="let score of possibleScores" [value]="score">
+                {{score}}
+              </md-option>
+            </md-select>
+            <button md-raised-button color="primary" (click)="onSave(image)">Save</button>
+
+            <div class="filler"></div>
+
+            <button md-button color="primary" (click)="onFavorite(image)">
+              <md-icon>favorite</md-icon>
+              Favorite
+            </button>
+
+          </div>
+
+        </md-card-actions>
+      </md-card>
+
+    </md-tab>
+    <md-tab label="Results">
+
+
+
+      <md-card class="loading" *ngIf="!votedCats">
+        <md-card-content>
+          <md-progress-spinner
+            mode="indeterminate"></md-progress-spinner>
+        </md-card-content>
+      </md-card>
+
+      <md-card *ngFor="let image of votedCats">
+        <md-card-title>Rate this cat</md-card-title>
+        <md-card-subtitle>ID# {{image.id}}</md-card-subtitle>
+        <img md-card-image src="{{image.url}}">
+        <md-card-content>
+          Score: {{image.score}}
+        </md-card-content>
+      </md-card>
+
+    </md-tab>
+    <md-tab label="Favorites">
+
+      <md-card class="loading" *ngIf="!favoriteCats">
+        <md-card-content>
+          <md-progress-spinner
+            mode="indeterminate"></md-progress-spinner>
+        </md-card-content>
+      </md-card>
+
+      <md-card *ngFor="let image of favoriteCats">
+        <md-card-title>Rate this cat</md-card-title>
+        <md-card-subtitle>ID# {{image.id}}</md-card-subtitle>
+        <img md-card-image src="{{image.url}}">
+        <md-card-content>
+          Favorited: {{image.created}}
+        </md-card-content>
+      </md-card>
+
+
+    </md-tab>
+  </md-tab-group>
+
+</div>

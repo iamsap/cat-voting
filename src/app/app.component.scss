@@ -1,0 +1,19 @@
+.container {
+
+  md-icon {
+    margin-right:5px;
+  }
+
+  md-card {
+    width:500px;
+    margin:20px auto;
+  }
+
+  .loading {
+    md-card-content {
+      md-progress-spinner {
+        margin:auto;
+      }
+    }
+  }
+}
