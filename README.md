@@ -4,13 +4,15 @@
 
 How to run.
 
-Set your API key as an environment variable.  See .env.sample as an example of how to do this.
+1. Get an API key from TheCatAPI.com.
+ 
+2. Set your API key as an environment variable.  See .env.sample as an example of how to do this.
 
 ```
 export APIKEY=<apikey>
 ```
 
-Install the required libraries.
+3. Install the required libraries.
 
 ```
 npm install
