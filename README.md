@@ -1,3 +1,5 @@
+![alt text](screenshot.png "Screenshot")
+
 # CatVoting
 
 How to run.
